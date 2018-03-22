@@ -61,7 +61,7 @@ options:
 - `model` the loopback model used for User maintenance (defaults to 'User', but you should really create your own user model that is uses User as a base model)
 - `identifier` the jwt claim to identify the user (defaults to 'email')
 - `password` the default password to use when creating loopback users (defaults to uuid.v4())
-
+- `createUserCallback(req, entity)` function that will be triggered before user is saved. It get's request object as one argument and target user entity as second, it can eg. manipulate user object to save real email in separate field.  
 ### Using loopback-auth0-jwt
 
 the `authenticated` method of loopback-auth0-jwt is added to any path that you wish to protect. If the client has not supplied a valid, signed jwt then an error will be raised
