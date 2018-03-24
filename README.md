@@ -6,9 +6,18 @@
 // load loopback-auth0-jwt module
 var auth0Jwt = require('loopback-auth0-jwt');
 
+function myCallback(request, user) {
+    return new Promise(funciton(resolve, reject) {
+        // do stuff...
+        user.customArray = [1, 2, 3];
+        resolve(user);
+    });
+}
+
 var authConfig = {
-  secretKey    : new Buffer(process.env['AUTH0_CLIENT_SECRET'], 'base64'),
-  model        : 'Profile'
+  secretKey         : new Buffer(process.env['AUTH0_CLIENT_SECRET'], 'base64'),
+  model             : 'Profile',
+  createUserCallback: myCallback 
 };
 
 function errorHandler(err, req, res, next) {
